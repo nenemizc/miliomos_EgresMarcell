@@ -61,7 +61,19 @@ namespace miliomos
             Console.WriteLine("Üdv a Játékban!");
             Console.WriteLine("Kérem válaszoljon az alábbi kérdésre, hogy tovább jusson a következő játékba!");
             MasikKerdes jelenlegiMasikKerdes = masik[random.Next(masik.Count)];
-            
+            Console.WriteLine($"Katégória: {jelenlegiMasikKerdes.Kat}\n");
+            Console.WriteLine(jelenlegiMasikKerdes.Kerdes);
+            Console.WriteLine($"({jelenlegiMasikKerdes.Helyes})");
+            Console.WriteLine($"\n A: {jelenlegiMasikKerdes.Valasz[0]}  B: {jelenlegiMasikKerdes.Valasz[1]} \n C: {jelenlegiMasikKerdes.Valasz[2]}  D: {jelenlegiMasikKerdes.Valasz[3]}");
+
+            if (Console.ReadLine() == jelenlegiMasikKerdes.Helyes)
+            {
+                Console.WriteLine("Helyes válasz");
+            }
+            else
+            {
+                Console.WriteLine("Helytelen válasz");
+            }
 
         }
     }
