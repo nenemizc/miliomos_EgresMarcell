@@ -20,5 +20,33 @@ namespace miliomos
 
         public int Szint { get => szint; set => szint = value; }
         public string[] Lovek { get => lovek;}
+
+        public List<MasikKerdes> MasikBeolvasas()
+        {
+            List<MasikKerdes> sorkerdesek = new();
+            StreamReader sr = new("sorkerdes.txt");
+            while (!sr.EndOfStream)
+            {
+                string[] vonal = sr.ReadLine().Split(";");
+                string[] valaszok = [vonal[1], vonal[2], vonal[3], vonal[4]];
+                MasikKerdes kerdes = new(vonal[0], valaszok, vonal[5], vonal[6]);
+                sorkerdesek.Add(kerdes);
+            }
+            return sorkerdesek;
+        }
+
+        public List<Kerdes> KerdesBeolvasas(string fileName)
+        {
+            List<Kerdes> kerdesek = new();
+            StreamReader sr = new(fileName);
+            while (!sr.EndOfStream)
+            {
+                string[] vonal = sr.ReadLine().Split(";");
+                string[] valaszok = [vonal[2], vonal[3], vonal[4], vonal[5]];
+                Kerdes kerdes = new(vonal[1], valaszok, vonal[6], vonal[7], Convert.ToInt16(vonal[0]));
+                kerdesek.Add(kerdes);
+            }
+            return kerdesek;
+        }
     }
 }
