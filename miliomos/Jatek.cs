@@ -58,21 +58,30 @@ namespace miliomos
             List<MasikKerdes> masik = MasikBeolvasas();
             List<Kerdes> kerdesek = KerdesBeolvasas();
 
-            Console.WriteLine("Üdv a Játékban!");
-            Console.WriteLine("Kérem válaszoljon az alábbi kérdésre, hogy tovább jusson a következő játékba!");
+            Console.WriteLine("Üdv a Játékban!\n");
+            Console.WriteLine("Kérem válaszoljon az alábbi kérdésre, hogy tovább jusson a következő játékba!\n");
             MasikKerdes jelenlegiMasikKerdes = masik[random.Next(masik.Count)];
             Console.WriteLine($"Katégória: {jelenlegiMasikKerdes.Kat}\n");
             Console.WriteLine(jelenlegiMasikKerdes.Kerdes);
             Console.WriteLine($"({jelenlegiMasikKerdes.Helyes})");
-            Console.WriteLine($"\n A: {jelenlegiMasikKerdes.Valasz[0]}  B: {jelenlegiMasikKerdes.Valasz[1]} \n C: {jelenlegiMasikKerdes.Valasz[2]}  D: {jelenlegiMasikKerdes.Valasz[3]}");
+            Console.WriteLine($"\n A: {jelenlegiMasikKerdes.Valasz[0]} \n B: {jelenlegiMasikKerdes.Valasz[1]} \n C: {jelenlegiMasikKerdes.Valasz[2]} \n D: {jelenlegiMasikKerdes.Valasz[3]}");
 
-            if (Console.ReadLine() == jelenlegiMasikKerdes.Helyes)
+            if (Console.ReadLine().ToUpper() == jelenlegiMasikKerdes.Helyes)
             {
                 Console.WriteLine("Helyes válasz");
+                Thread.Sleep(1000);
+                Console.Clear();
+                bool game = true;
+                do (
+
+                )while (game == true);
             }
             else
             {
                 Console.WriteLine("Helytelen válasz");
+				Thread.Sleep(1000);
+				Console.Clear();
+                Console.WriteLine("A játék ön számára véget ért.");
             }
 
         }
