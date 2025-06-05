@@ -72,67 +72,70 @@ namespace miliomos
             Console.WriteLine($"({jelenlegiMasikKerdes.Helyes})");
             Console.WriteLine($"\n A: {jelenlegiMasikKerdes.Valasz[0]} \n B: {jelenlegiMasikKerdes.Valasz[1]} \n C: {jelenlegiMasikKerdes.Valasz[2]} \n D: {jelenlegiMasikKerdes.Valasz[3]}\n");
 
-            if ( Console.ReadLine().ToUpper() == jelenlegiMasikKerdes.Helyes)
+            if (Console.ReadLine().ToUpper() == jelenlegiMasikKerdes.Helyes)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\nHelyes válasz");
                 Console.ForegroundColor = ConsoleColor.White;
                 Thread.Sleep(1000);
                 Console.Clear();
+
                 bool game = true;
+
+                Kerdes ez = kerdesek[random.Next(kerdesek.Count)];
+                while (ez.Szint != Szint)
+                {
+                    ez = kerdesek[random.Next(kerdesek.Count)];
+                }
+
+                Console.WriteLine($"{Szint}. forduló  Kategória: {ez.Kat}\n");
+                Console.WriteLine($"Aktuális nyeremény: {Lovek[peeez]}\nFix nyeremény: {fix}\n");
+                if (call)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("Telefonos segítség (T)");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("Telefonos segítség (T)");
+                }
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" | ");
+
+                if (fel)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("Felezés (F)");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("Felezés (F)");
+                }
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" | ");
+
+                if (kozonseg)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("Közönség segítsége (K)");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("Közönség segítsége (K)");
+                }
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("\n\n");
+
+                Console.WriteLine(ez.Talany);
+                Console.WriteLine();
+                Console.WriteLine($"({ez.Helyes})");
+                Console.WriteLine($"\n A: {ez.Valasz[0]} \n B: {ez.Valasz[1]} \n C: {ez.Valasz[2]} \n D: {ez.Valasz[3]}\n");
+
                 do
                 {
-                    Kerdes ez = kerdesek[random.Next(kerdesek.Count)];
-                    while (ez.Szint != Szint)
-                    {
-                        ez = kerdesek[random.Next(kerdesek.Count)];
-                    }
-                    Console.WriteLine($"{Szint}. forduló  Kategória: {ez.Kat}\n");
-                    Console.WriteLine($"Aktuális nyeremény: {Lovek[peeez]}\nFix nyeremény: {fix}\n");
-                    if (call)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write("Telefonos segítség (T)");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("Telefonos segítség (T)");
-                    }
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write(" | ");
-
-                    if (fel)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write("Felezés (F)");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("Felezés (F)");
-                    }
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write(" | ");
-
-                    if (kozonseg)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write("Közönség segítsége (K)");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("Közönség segítsége (K)");
-                    }
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("\n\n");
-
-                    Console.WriteLine(ez.Talany);
-                    Console.WriteLine();
-                    Console.WriteLine($"({ez.Helyes})");
-                    Console.WriteLine($"\n A: {ez.Valasz[0]} \n B: {ez.Valasz[1]} \n C: {ez.Valasz[2]} \n D: {ez.Valasz[3]}\n");
-
                     string bemenet = Console.ReadLine().ToUpper();
 
                     while (bemenet != "A" && bemenet != "B" && bemenet != "C" && bemenet != "D" && bemenet != "T" && bemenet != "K" && bemenet != "F")
@@ -161,6 +164,143 @@ namespace miliomos
                             Console.WriteLine($"Gratulálunk megnyerte az {Lovek[peeez]}-ot!");
                             game = false;
                         }
+                        while (ez.Szint != Szint)
+                        {
+                            ez = kerdesek[random.Next(kerdesek.Count)];
+                        }
+                        Console.WriteLine($"{Szint}. forduló  Kategória: {ez.Kat}\n");
+                        Console.WriteLine($"Aktuális nyeremény: {Lovek[peeez]}\nFix nyeremény: {fix}\n");
+                        if (call)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("Telefonos segítség (T)");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("Telefonos segítség (T)");
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(" | ");
+
+                        if (fel)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("Felezés (F)");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("Felezés (F)");
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(" | ");
+
+                        if (kozonseg)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("Közönség segítsége (K)");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("Közönség segítsége (K)");
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("\n\n");
+
+                        Console.WriteLine(ez.Talany);
+                        Console.WriteLine();
+                        Console.WriteLine($"({ez.Helyes})");
+                        Console.WriteLine($"\n A: {ez.Valasz[0]} \n B: {ez.Valasz[1]} \n C: {ez.Valasz[2]} \n D: {ez.Valasz[3]}\n");
+                    }
+                    else if (bemenet == "F")
+                    {
+                        if (fel)
+                        {
+                            int helyesSzam = 0;
+                            int kamuSzam = 1;
+                            string[] betuk = ["A", "B", "C", "D"];
+                            switch (ez.Helyes)
+                            {
+                                case "A": kamuSzam = random.Next(ez.Valasz.Length); helyesSzam = 0; while (kamuSzam == helyesSzam) { kamuSzam = random.Next(ez.Valasz.Length); } break;
+                                case "B": kamuSzam = random.Next(ez.Valasz.Length); helyesSzam = 1; while (kamuSzam == helyesSzam) { kamuSzam = random.Next(ez.Valasz.Length); } break;
+                                case "C": kamuSzam = random.Next(ez.Valasz.Length); helyesSzam = 2; while (kamuSzam == helyesSzam) { kamuSzam = random.Next(ez.Valasz.Length); } break;
+                                case "D": kamuSzam = random.Next(ez.Valasz.Length); helyesSzam = 3; while (kamuSzam == helyesSzam) { kamuSzam = random.Next(ez.Valasz.Length); } break;
+                                default: Console.WriteLine("Valami rósz"); break;
+                            }
+
+                            if (helyesSzam > kamuSzam)
+                            {
+                                Console.WriteLine($"\n {betuk[kamuSzam]}: {ez.Valasz[kamuSzam]} \n {betuk[helyesSzam]}: {ez.Valasz[helyesSzam]} \n");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\n {betuk[helyesSzam]}: {ez.Valasz[helyesSzam]} \n {betuk[kamuSzam]}: {ez.Valasz[kamuSzam]} \n");
+                            }
+
+                            fel = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Segítség elhasználva");
+                        }
+                    }
+                    else if( bemenet == "K")
+                    {
+                        if (kozonseg)
+                        {
+                            int nyoc = 80;
+                            int[] szamok = new int[4];
+
+                            for (int i = 0; i < szamok.Length - 1; i++)
+                            {
+                                szamok[i] = random.Next(nyoc > 40 ? 40 : nyoc);
+                                nyoc -= szamok[i];
+                            }
+                            szamok[3] = nyoc;
+
+
+                            switch (ez.Helyes)
+                            {
+                                case "A": szamok[0] += 20; break;
+                                case "B": szamok[1] += 20; break;
+                                case "C": szamok[2] += 20; break;
+                                case "D": szamok[3] += 20; break;
+                                default: Console.WriteLine("valami rósz"); break;
+                            }
+
+                            Console.WriteLine($"\nKözönség véleménye:\n A: {szamok[0]}%\n B: {szamok[1]}%\n C: {szamok[2]}%\n D: {szamok[3]}%");
+
+                            kozonseg = false;
+                        }
+                        else
+                        {
+
+                            Console.WriteLine("Segítség elhasználva");
+                        }
+
+                    }
+                    else if (bemenet == "T")
+                    {
+                        if (call)
+                        {
+                            switch (random.Next(3)) 
+                            {
+                                case 0: Console.WriteLine("Édesapád azt mondja, hogy az 'A' a jó."); break ;
+                                case 1: Console.WriteLine("A bátyád azt mondja, hogy a 'B' lehet a helyes válasz."); break;
+                                case 2: Console.WriteLine("A fodrászod szerint a 'C' a legvalószínűbb"); break;
+                                case 3: Console.WriteLine("Bodri szerint a 'D' válasz a helyes"); break;
+                                default : Console.WriteLine("vAlami rósz"); break;
+
+                            }
+
+                            call = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Segítség elhasználva");
+                        }
                     }
                     else
                     {
@@ -173,7 +313,6 @@ namespace miliomos
                         game = false;
                     }
 
-                    
 
 
                 } while (game == true);
