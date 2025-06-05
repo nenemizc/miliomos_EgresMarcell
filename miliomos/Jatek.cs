@@ -58,28 +58,132 @@ namespace miliomos
             List<MasikKerdes> masik = MasikBeolvasas();
             List<Kerdes> kerdesek = KerdesBeolvasas();
 
+            int peeez = 0;
+            string fix = "0 Ft";
+            bool call = true;
+            bool fel = true;
+            bool kozonseg = true;
+
             Console.WriteLine("Üdv a Játékban!\n");
             Console.WriteLine("Kérem válaszoljon az alábbi kérdésre, hogy tovább jusson a következő játékba!\n");
             MasikKerdes jelenlegiMasikKerdes = masik[random.Next(masik.Count)];
             Console.WriteLine($"Katégória: {jelenlegiMasikKerdes.Kat}\n");
             Console.WriteLine(jelenlegiMasikKerdes.Kerdes);
             Console.WriteLine($"({jelenlegiMasikKerdes.Helyes})");
-            Console.WriteLine($"\n A: {jelenlegiMasikKerdes.Valasz[0]} \n B: {jelenlegiMasikKerdes.Valasz[1]} \n C: {jelenlegiMasikKerdes.Valasz[2]} \n D: {jelenlegiMasikKerdes.Valasz[3]}");
+            Console.WriteLine($"\n A: {jelenlegiMasikKerdes.Valasz[0]} \n B: {jelenlegiMasikKerdes.Valasz[1]} \n C: {jelenlegiMasikKerdes.Valasz[2]} \n D: {jelenlegiMasikKerdes.Valasz[3]}\n");
 
-            if (Console.ReadLine().ToUpper() == jelenlegiMasikKerdes.Helyes)
+            if ( Console.ReadLine().ToUpper() == jelenlegiMasikKerdes.Helyes)
             {
-                Console.WriteLine("Helyes válasz");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\nHelyes válasz");
+                Console.ForegroundColor = ConsoleColor.White;
                 Thread.Sleep(1000);
                 Console.Clear();
                 bool game = true;
-                do (
+                do
+                {
+                    Kerdes ez = kerdesek[random.Next(kerdesek.Count)];
+                    while (ez.Szint != Szint)
+                    {
+                        ez = kerdesek[random.Next(kerdesek.Count)];
+                    }
+                    Console.WriteLine($"{Szint}. forduló  Kategória: {ez.Kat}\n");
+                    Console.WriteLine($"Aktuális nyeremény: {Lovek[peeez]}\nFix nyeremény: {fix}\n");
+                    if (call)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("Telefonos segítség (T)");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("Telefonos segítség (T)");
+                    }
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(" | ");
 
-                )while (game == true);
+                    if (fel)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("Felezés (F)");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("Felezés (F)");
+                    }
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(" | ");
+
+                    if (kozonseg)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("Közönség segítsége (K)");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("Közönség segítsége (K)");
+                    }
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("\n\n");
+
+                    Console.WriteLine(ez.Talany);
+                    Console.WriteLine();
+                    Console.WriteLine($"({ez.Helyes})");
+                    Console.WriteLine($"\n A: {ez.Valasz[0]} \n B: {ez.Valasz[1]} \n C: {ez.Valasz[2]} \n D: {ez.Valasz[3]}\n");
+
+                    string bemenet = Console.ReadLine().ToUpper();
+
+                    while (bemenet != "A" && bemenet != "B" && bemenet != "C" && bemenet != "D" && bemenet != "T" && bemenet != "K" && bemenet != "F")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Hibás bemenet");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        bemenet = Console.ReadLine().ToUpper();
+                    }
+
+                    if (bemenet == ez.Helyes)
+                    {
+                        Szint++;
+                        peeez++;
+                        if (Lovek[peeez] == "100.000 Ft" || Lovek[peeez] == "1.000.000 Ft" || Lovek[peeez] == "10.000.000 Ft")
+                        {
+                            fix = Lovek[peeez];
+                        }
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nHelyes válasz");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        if (Szint == 16)
+                        {
+                            Console.WriteLine($"Gratulálunk megnyerte az {Lovek[peeez]}-ot!");
+                            game = false;
+                        }
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nHelytelen válasz");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine($"Az ön nyereménye: {fix}");
+                        game = false;
+                    }
+
+                    
+
+
+                } while (game == true);
             }
             else
             {
-                Console.WriteLine("Helytelen válasz");
-				Thread.Sleep(1000);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nHelytelen válasz");
+                Console.ForegroundColor = ConsoleColor.White;
+                Thread.Sleep(1000);
 				Console.Clear();
                 Console.WriteLine("A játék ön számára véget ért.");
             }
